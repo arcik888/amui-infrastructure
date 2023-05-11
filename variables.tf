@@ -1,6 +1,7 @@
 variable "aws_region" {
   description = "AS region of VPC"
   type        = string
+  default     = "eu-central-1"
 }
 
 variable "amui_instance_name" {
@@ -17,26 +18,33 @@ variable "vpc_name" {
 
 variable "vpc_short_name" {
   type = string
+
+  validation {
+    condition     = length(var.vpc_short_name) >= 3 && length(var.vpc_short_name) <= 4
+    error_message = "The short name of the VPC must be 3 or 4 characters long"
+  }
+
 }
 
-variable "azs" {
-  type = list(string)
-}
+# variable "azs" {
+#   type = list(string)
+# }
 
 variable "general_cidr_block" {
-  type = string
+  type    = string
+  default = "0.0.0.0/0"
 }
 
-variable "bastion_ebs_size" {
-  type = number
-}
+# variable "bastion_ebs_size" {
+#   type = number
+# }
 
 variable "sql_ebs_size" {
   type = number
 }
 
 variable "vpc_cidr_block" {
-  type        = list(string)
+  type = list(string)
   default = [
     "32.0.0.0/16",
     "32.0.1.0/24",
@@ -44,4 +52,17 @@ variable "vpc_cidr_block" {
     "32.0.3.0/24"
   ]
 
+}
+
+variable "customer_full_name" {
+  type = string
+}
+
+variable "customer_short_name" {
+  type = string
+
+  validation {
+    condition     = length(var.customer_short_name) >= 3 && length(var.customer_short_name) <= 4
+    error_message = "The short name of the Customer must be 3 or 4 characters long"
+  }
 }

@@ -40,8 +40,8 @@ output "amui_bastion_public_ip" {
   value = module.amui_instance_bastion.instance_public_ip
 }
 
-output "amui_master_instance_private_ip" {
-  value = module.master.instance_private_ip
+output "amui_infratools_instance_private_ip" {
+  value = module.infratools.instance_private_ip
 }
 
 output "bastion_url" {
@@ -52,6 +52,6 @@ output "connection_string" {
   value = "ssh -A -i '~/.ssh/instance_key' admin@${module.amui_instance_bastion.instance_url}"
 }
 
-# output "rds_arn" {
-#   value = module.amui_rds.db_name
-# }
+output "rds_arn" {
+  value = module.amui_rds.db_name
+}

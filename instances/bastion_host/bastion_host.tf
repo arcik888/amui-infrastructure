@@ -1,12 +1,12 @@
-data "aws_ami" "amzn_linux" {
-  most_recent = true
-  owners      = ["amazon"]
+# data "aws_ami" "amzn_linux" {
+#   most_recent = true
+#   owners      = ["amazon"]
 
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-kernel-5.10-hvm-*-x86_64-gp2"]
-  }
-}
+#   filter {
+#     name   = "name"
+#     values = ["amzn2-ami-kernel-5.10-hvm-*-x86_64-gp2"]
+#   }
+# }
 
 data "aws_ami" "debian_linux" {
   most_recent = true
@@ -35,7 +35,7 @@ resource "aws_instance" "linux" {
   }
 
   tags = {
-    Name = "Bastion Host"
+    Name = "Bastion Host ${var.vpc_short}- ${var.customer_short}"
   }
 
 }

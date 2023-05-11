@@ -4,8 +4,8 @@ resource "aws_vpc" "amui_vpc" {
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
   tags = {
-    "name"     = "AMUI VPC ${var.vpc_name}"
-    "IP_range" = "${var.vpc_cidr_block[0]}"
+    Name     = "AMUI VPC ${var.vpc_name}-${var.customer_short}"
+    IP_range = "${var.vpc_cidr_block[0]}"
   }
 }
 
@@ -16,9 +16,9 @@ resource "aws_subnet" "amui_public_subnet_1" {
   map_public_ip_on_launch = true
   availability_zone       = var.azs[0]
   tags = {
-    "Name"              = "AMUI VPC Public subnet"
-    "IP range"          = "${var.vpc_cidr_block[1]}"
-    "Availability Zone" = "${var.azs[0]}"
+    Name              = "AMUI VPC Public subnet ${var.vpc_name}-${var.customer_short}"
+    IP_range          = "${var.vpc_cidr_block[1]}"
+    Availability_Zone = "${var.azs[0]}"
   }
 }
 
@@ -28,9 +28,9 @@ resource "aws_subnet" "amui_private_subnet_1" {
   map_public_ip_on_launch = false
   availability_zone       = var.azs[0]
   tags = {
-    "Name"              = "AMUI VPC Private subnet 1"
-    "IP range"          = "${var.vpc_cidr_block[2]}"
-    "Availability Zone" = "${var.azs[0]}"
+    Name              = "AMUI VPC Private subnet 1 ${var.vpc_name}-${var.customer_short}"
+    IP_range          = "${var.vpc_cidr_block[2]}"
+    Availability_Zone = "${var.azs[0]}"
   }
 }
 
@@ -40,9 +40,9 @@ resource "aws_subnet" "amui_private_subnet_2" {
   map_public_ip_on_launch = false
   availability_zone       = var.azs[1]
   tags = {
-    "Name"              = "AMUI VPC Private subnet 2"
-    "IP range"          = "${var.vpc_cidr_block[3]}"
-    "Availability Zone" = "${var.azs[1]}"
+    Name              = "AMUI VPC Private subnet 2 ${var.vpc_name}-${var.customer_short}"
+    IP_range          = "${var.vpc_cidr_block[3]}"
+    Availability_Zone = "${var.azs[1]}"
   }
 }
 
@@ -72,7 +72,7 @@ resource "aws_route_table" "amui_private_rt" {
   }
 }
 
-resource "aws_route_table_association" "amui_private_rt_associate" {
+resource "aws_route_table_association" "amui_private1_rt_associate" {
   subnet_id      = aws_subnet.amui_private_subnet_1.id
   route_table_id = aws_route_table.amui_private_rt.id
 }
@@ -86,15 +86,23 @@ resource "aws_nat_gateway" "amui_nat_gw" {
     aws_eip.amui_nat_eip,
     aws_internet_gateway.amui_igw
   ]
+
+  tags = {
+    Name = "Private Subnet 1 NAT gateway ${var.vpc_name}-${var.customer_short}"
+  }
 }
 
 resource "aws_eip" "amui_nat_eip" {
   vpc = true
+
+  tags = {
+    Name = "Private Subnet 1 NAT gateway ${var.vpc_name}-${var.customer_short}"
+  }
 }
 
 # AWS Security group
 resource "aws_security_group" "amui_sg_0" {
-  name   = "amui_${var.vpc_name}_sg_0"
+  name   = "amui_${var.vpc_name}_${var.customer_short}_sg_0"
   vpc_id = aws_vpc.amui_vpc.id
   ingress {
     from_port   = 0

@@ -15,6 +15,7 @@ module "amui_vpc" {
   source             = "./network"
   vpc_name           = var.vpc_name
   general_cidr_block = var.general_cidr_block
+  customer_short     = var.customer_short_name
 }
 
 resource "aws_key_pair" "amui_instance_key" {
@@ -46,17 +47,16 @@ resource "aws_security_group" "internal_ssh_allow" {
   name   = "internal_ssh_allowed"
   vpc_id = module.amui_vpc.vpc_id
   ingress {
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
     security_groups = [
       "${aws_security_group.bastion_ssh.id}",
-      ]
+    ]
     cidr_blocks = [
       "${var.vpc_cidr_block[2]}",
       "${var.vpc_cidr_block[3]}"
-      ]
-
+    ]
   }
   egress {
     from_port   = 0
@@ -90,6 +90,8 @@ module "amui_instance_bastion" {
   amui_instance_name = "Bastion Host"
   amui_subnet_id     = module.amui_vpc.public_subnet_id
   amui_instance_key  = aws_key_pair.amui_instance_key.id
+  customer_short     = var.customer_short_name
+  vpc_short          = var.vpc_short_name
   vpc_security_group_ids = [
     "${aws_security_group.bastion_ssh.id}",
     "${aws_security_group.internal_ssh_allow.id}"
@@ -103,6 +105,8 @@ module "amui_instance_sql_master" {
   ebs_size               = var.sql_ebs_size
   vpc_security_group_ids = [aws_security_group.internal_ssh_allow.id]
   amui_instance_name     = var.amui_instance_name[0]
+  customer_short         = var.customer_short_name
+  vpc_short              = var.vpc_short_name
 }
 
 module "amui_instance_sql_replica" {
@@ -113,19 +117,25 @@ module "amui_instance_sql_replica" {
   ebs_size               = var.sql_ebs_size
   vpc_security_group_ids = [aws_security_group.internal_ssh_allow.id]
   amui_instance_name     = "${var.amui_instance_name[1]}_${count.index + 1}"
+  customer_short         = var.customer_short_name
+  vpc_short              = var.vpc_short_name
 }
 
-module "master" {
-  source                 = "./instances/master"
+module "infratools" {
+  source                 = "./instances/infratools"
   amui_subnet_id         = module.amui_vpc.private_subnet_1_id
   amui_instance_key      = aws_key_pair.amui_instance_key.id
   ebs_size               = var.sql_ebs_size
   vpc_security_group_ids = [aws_security_group.internal_ssh_allow.id]
+  customer_short         = var.customer_short_name
+  vpc_short              = var.vpc_short_name
 }
 
-# module "amui_rds" {
-#   source                = "./rds"
-#   amui_private_subnet_1 = module.amui_vpc.private_subnet_1_id
-#   amui_private_subnet_2 = module.amui_vpc.private_subnet_2_id
-#   amui_db_sg_1          = aws_security_group.amui_db_sg_1.id
-# }
+module "amui_rds" {
+  source                = "./rds"
+  amui_private_subnet_1 = module.amui_vpc.private_subnet_1_id
+  amui_private_subnet_2 = module.amui_vpc.private_subnet_2_id
+  amui_db_sg_1          = aws_security_group.amui_db_sg_1.id
+  customer_short        = var.customer_short_name
+  vpc_short             = var.vpc_short_name
+}

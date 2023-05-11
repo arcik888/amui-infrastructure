@@ -16,27 +16,13 @@ data "template_file" "user_data" {
   template = file("${path.module}/cloud-init.yaml")
 }
 
-resource "aws_instance" "master" {
+resource "aws_instance" "infratools" {
   ami                    = data.aws_ami.debian_linux.id
   instance_type          = data.aws_ec2_instance_type.t2_micro.instance_type
   subnet_id              = var.amui_subnet_id
   key_name               = var.amui_instance_key
   vpc_security_group_ids = var.vpc_security_group_ids
   user_data              = data.template_file.user_data.rendered
-
-  # connection {
-  #   host = self.private_ip
-  #   type = "ssh"
-  #   user = "admin"
-  #   agent = false
-  #   private_key = file(pathexpand("~/.ssh/instance_key"))
-  # }
-
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo apt install ansible"
-  #   ]
-  # }
 
   root_block_device {
     volume_size = 8
@@ -50,7 +36,7 @@ resource "aws_instance" "master" {
   }
 
   tags = {
-    Name = "Ansible Master"
+    Name = "InfraTools ${var.vpc_short} - ${var.customer_short}"
   }
 
 }

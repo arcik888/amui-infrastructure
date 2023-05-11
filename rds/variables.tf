@@ -12,3 +12,12 @@ variable "amui_db_sg_1" {
   description = "Database Security Group"
   default     = null
 }
+
+variable "customer_short" {
+  description = "Customer's short name"
+  default     = null
+}
+
+variable "vpc_short" {
+  default = null
+}

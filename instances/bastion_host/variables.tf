@@ -24,3 +24,14 @@ variable "ebs_size" {
   description = "Size of additional disk"
   default     = null
 }
+
+variable "customer_short" {
+  description = "Customer's short name"
+  type        = string
+  default     = null
+}
+
+variable "vpc_short" {
+  type    = string
+  default = null
+}

@@ -36,7 +36,7 @@ resource "aws_instance" "linux" {
   }
 
   tags = {
-    Name = "${var.amui_instance_name}"
+    Name = "${var.amui_instance_name}-${var.customer_short}-${var.vpc_short}"
   }
 
 }

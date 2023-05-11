@@ -35,3 +35,8 @@ variable "general_cidr_block" {
   type        = string
   default     = "0.0.0.0/0"
 }
+
+variable "customer_short" {
+  type    = string
+  default = null
+}
