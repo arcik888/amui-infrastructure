@@ -19,7 +19,7 @@ module "amui_vpc" {
 }
 
 resource "aws_key_pair" "amui_instance_key" {
-  key_name   = "instance_key"
+  key_name   = "instance_key-${var.customer_short_name}-${var.vpc_short_name}"
   public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIYAbb46rk4Y6pYF1vudQTnzMfSaCWgPZdKaN+8DmF4N artur@devenv"
 }
 
