@@ -13,6 +13,6 @@ vpc_short_name = "dev"
 
 sql_ebs_size = 10
 
-customer_full_name = "Artur Marciniec Usługi Informatyczne"
+customer_full_name = "Michał Chudziak"
 
-customer_short_name = "amui"
+customer_short_name = "Chm"

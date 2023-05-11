@@ -7,12 +7,12 @@ amui_instance_name = [
 
 amui_sql_replicas_number = 2
 
-vpc_name = "develpoment"
+vpc_name = "Production"
 
-vpc_short_name = "dev"
+vpc_short_name = "prod"
 
 sql_ebs_size = 10
 
 customer_full_name = "Artur Marciniec Usługi Informatyczne"
 
-customer_short_name = "amui"
+customer_short_name = "AMUI"

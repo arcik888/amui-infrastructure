@@ -7,9 +7,9 @@ amui_instance_name = [
 
 amui_sql_replicas_number = 2
 
-vpc_name = "develpoment"
+vpc_name = "QA"
 
-vpc_short_name = "dev"
+vpc_short_name = "test"
 
 sql_ebs_size = 10
 

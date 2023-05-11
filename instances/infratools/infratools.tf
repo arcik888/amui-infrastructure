@@ -16,7 +16,7 @@ data "template_file" "user_data" {
   template = file("${path.module}/cloud-init.yaml")
 }
 
-resource "aws_instance" "infratools" {
+resource "aws_instance" "infra_tools" {
   ami                    = data.aws_ami.debian_linux.id
   instance_type          = data.aws_ec2_instance_type.t2_micro.instance_type
   subnet_id              = var.amui_subnet_id

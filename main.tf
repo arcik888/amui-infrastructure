@@ -138,4 +138,5 @@ module "amui_rds" {
   amui_db_sg_1          = aws_security_group.amui_db_sg_1.id
   customer_short        = var.customer_short_name
   vpc_short             = var.vpc_short_name
+  db_password           = var.db_password
 }

@@ -26,18 +26,10 @@ variable "vpc_short_name" {
 
 }
 
-# variable "azs" {
-#   type = list(string)
-# }
-
 variable "general_cidr_block" {
   type    = string
   default = "0.0.0.0/0"
 }
-
-# variable "bastion_ebs_size" {
-#   type = number
-# }
 
 variable "sql_ebs_size" {
   type = number
@@ -66,3 +58,5 @@ variable "customer_short_name" {
     error_message = "The short name of the Customer must be 3 or 4 characters long"
   }
 }
+
+variable "db_password" {}

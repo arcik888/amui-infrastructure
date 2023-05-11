@@ -21,3 +21,8 @@ variable "customer_short" {
 variable "vpc_short" {
   default = null
 }
+
+variable "db_password" {
+  type = string
+  sensitive = true
+}

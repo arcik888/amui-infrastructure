@@ -11,7 +11,7 @@ vpc_name = "develpoment"
 
 vpc_short_name = "dev"
 
-sql_ebs_size = 10
+sql_ebs_size = 10 
 
 customer_full_name = "Artur Marciniec Usługi Informatyczne"
 

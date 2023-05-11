@@ -1,0 +1,83 @@
+{
+  "amui_bastion_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "i-0aa1542aaef0fe50b"
+  },
+  "amui_bastion_public_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "3.71.3.202"
+  },
+  "amui_elastic_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "3.72.188.155"
+  },
+  "amui_infratools_instance_private_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "32.0.2.160"
+  },
+  "amui_instance_sql_master_private_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "32.0.2.230"
+  },
+  "amui_instance_sql_replica_private_ip": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        [
+          "tuple",
+          [
+            "string",
+            "string"
+          ]
+        ]
+      ]
+    ],
+    "value": [
+      [
+        "32.0.2.45",
+        "32.0.2.110"
+      ]
+    ]
+  },
+  "amui_private_subnet_1_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "subnet-0257852f2032af252"
+  },
+  "amui_private_subnet_2_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "subnet-0a408795a7031ea92"
+  },
+  "amui_public_subnet_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "subnet-0c6ad12651d5291d5"
+  },
+  "amui_vpc_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "vpc-08ece81f00a54ae2f"
+  },
+  "bastion_url": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ec2-3-71-3-202.eu-central-1.compute.amazonaws.com"
+  },
+  "connection_string": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ssh -A -i '~/.ssh/instance_key' admin@ec2-3-71-3-202.eu-central-1.compute.amazonaws.com"
+  },
+  "rds_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:rds:eu-central-1:527707671240:db:amuiauthdbamuitest"
+  }
+}

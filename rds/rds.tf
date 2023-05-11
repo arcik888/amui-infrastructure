@@ -18,7 +18,7 @@ resource "aws_db_instance" "amui_auth_db" {
   instance_class          = "db.t3.micro"
   db_name                 = "amui_auth_${var.customer_short}${var.vpc_short}"
   username                = "postgres"
-  password                = "Pa$$w0rd"
+  password                = var.db_password
   port                    = 5432
   publicly_accessible     = false
   storage_encrypted       = true
@@ -30,6 +30,3 @@ resource "aws_db_instance" "amui_auth_db" {
     Description = "Database of users authorization"
   }
 }
-
-# używać zmiennych środowiskowych dla secretów
-# dodać subnet private 2 do NAT gw
