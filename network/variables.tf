@@ -26,12 +26,12 @@ variable "azs" {
   type        = list(string)
   default = [
     "eu-central-1a",
-    "eu-central-1b"
-  ]
+    "eu-central-1b",
+  ]  
 }
 
 variable "general_cidr_block" {
-  description = "CIDR block for general purpouse - allow all internet connection"
+  description = "CIDR block for general purpouse - all internet connection"
   type        = string
   default     = "0.0.0.0/0"
 }
