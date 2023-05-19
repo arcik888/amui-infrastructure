@@ -1,24 +1,24 @@
-variable "vpc_cidr_block" {
-  description = "CIDR block for VPC"
-  type        = list(string)
-  default = [
-    "32.0.0.0/16",
-    "32.0.1.0/24",
-    "32.0.2.0/24",
-    "32.0.3.0/24"
-  ]
-}
+# variable "vpc_cidr_block" {
+#   description = "CIDR block for VPC"
+#   type        = list(string)
+#   default = [
+#     "32.0.0.0/16",
+#     "32.0.1.0/24",
+#     "32.0.2.0/24",
+#     "32.0.3.0/24"
+#   ]
+# }
 
 variable "vpc_name" {
   description = "Name of VPC"
   type        = string
-  default     = null # "develpoment"
+  default     = null
 }
 
 variable "vpc_short_name" {
   description = "Abbreviation of full name"
   type        = string
-  default     = null # "dev"
+  default     = null
 }
 
 variable "azs" {
