@@ -23,6 +23,6 @@ variable "vpc_short" {
 }
 
 variable "db_password" {
-  type = string
+  type      = string
   sensitive = true
 }
