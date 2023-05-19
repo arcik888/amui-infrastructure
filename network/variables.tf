@@ -27,7 +27,7 @@ variable "azs" {
   default = [
     "eu-central-1a",
     "eu-central-1b",
-  ]  
+  ]
 }
 
 variable "general_cidr_block" {
