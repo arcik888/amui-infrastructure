@@ -5,10 +5,18 @@ output "vpc_id" {
 
 output "public_subnet_ids" {
   description = "Value of Public Subnet ID in AMUI VPC"
-  value = [ for subnet_id in aws_subnet.amui_public_subnet : subnet_id ]
+  value = [ for subnet in aws_subnet.amui_public_subnet : subnet.id ]
 }
 
-output "private_subnet_id" {
-  description = "Value of Private Subnet 1 ID in AMUI VPC"
-  value = [ for subnet_id in aws_subnet.amui_private_subnet : subnet_id ]
+output "amui_public_subnet_cidr" {
+  value = [ for cidr  in aws_subnet.amui_public_subnet : cidr.cidr_block ]
+}
+
+output "private_subnet_ids" {
+  description = "Value of Private Subnet ID in AMUI VPC"
+  value = [ for subnet in aws_subnet.amui_private_subnet : subnet.id ]
+}
+
+output "amui_private_subnet_cidr" {
+  value = [ for cidr  in aws_subnet.amui_private_subnet : cidr.cidr_block ]
 }
