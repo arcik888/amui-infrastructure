@@ -1,4 +1,4 @@
-variable "aws_region" {
+variable "awsRegion" {
   description = "AS region of VPC"
   type        = string
 }
@@ -16,15 +16,15 @@ variable "amui_sql_replicas_number" {
   default = 2
 }
 
-variable "vpc_name" {
+variable "vpcName" {
   type = string
 }
 
-variable "vpc_short_name" {
+variable "vpcShortName" {
   type = string
 
   validation {
-    condition     = length(var.vpc_short_name) >= 3 && length(var.vpc_short_name) <= 4
+    condition     = length(var.vpcShortName) >= 3 && length(var.vpcShortName) <= 4
     error_message = "The short name of the VPC must be 3 or 4 characters long"
   }
 }
@@ -34,19 +34,19 @@ variable "general_cidr_block" {
   default = "0.0.0.0/0"
 }
 
-variable "sql_ebs_size" {
+variable "sqlEbsSize" {
   type = number
 }
 
-variable "customer_full_name" {
+variable "customerFullName" {
   type = string
 }
 
-variable "customer_short_name" {
+variable "customerShortName" {
   type = string
 
   validation {
-    condition     = length(var.customer_short_name) >= 3 && length(var.customer_short_name) <= 4
+    condition     = length(var.customerShortName) >= 3 && length(var.customerShortName) <= 4
     error_message = "The short name of the Customer must be 3 or 4 characters long"
   }
 }
