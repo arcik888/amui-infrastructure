@@ -1,18 +1,12 @@
-aws_region = "eu-central-1"
+awsRegion = "eu-central-1"
 
-amui_instance_name = [
-  "SQL_master",
-  "SQL_replica",
-]
+vpcName = "develpoment"
 
-amui_sql_replicas_number = 2
+vpcShortName = "dev"
 
-vpc_name = "develpoment"
+sqlEbsSize = 20
 
-vpc_short_name = "dev"
+customerFullName = "Artur Marciniec Usługi Informatyczne"
 
-sql_ebs_size = 10
+customerShortName = "amui"
 
-customer_full_name = "Artur Marciniec Usługi Informatyczne"
-
-customer_short_name = "amui"
