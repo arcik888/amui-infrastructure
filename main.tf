@@ -1,4 +1,12 @@
 terraform {
+
+  cloud {
+    organization = "arcik888-org"
+    workspaces {
+      name = "AWS_configuration"
+    }
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -20,7 +28,7 @@ module "amui_vpc" {
 
 resource "aws_key_pair" "amui_instance_key" {
   key_name   = "instance_key-${var.customerShortName}-${var.vpcShortName}"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIYAbb46rk4Y6pYF1vudQTnzMfSaCWgPZdKaN+8DmF4N artur@devenv"
+  public_key = var.instance_key # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIYAbb46rk4Y6pYF1vudQTnzMfSaCWgPZdKaN+8DmF4N artur@devenv"
 }
 
 resource "aws_security_group" "bastion_ssh" {
@@ -56,11 +64,6 @@ resource "aws_security_group" "internal_ssh_allow" {
     cidr_blocks = [
       "${module.amui_vpc.amui_private_subnet_cidr[0]}",
       "${module.amui_vpc.amui_private_subnet_cidr[1]}",
-      # "${var.vpc_public_subnets_cidr[1]}",
-      # "${var.vpc_private_subnets_cidr[0]}",
-      # "${var.vpc_private_subnets_cidr[1]}",
-      # "32.0.0.0/32",
-      # "${var.vpc_cidr_block[3]}"
     ]
   }
   egress {

@@ -54,3 +54,8 @@ variable "customerShortName" {
 variable "db_password" {
   sensitive = true
 }
+
+variable "instance_key" {
+  description = "SSH key to access instances"
+  sensitive = true
+}
