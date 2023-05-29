@@ -28,7 +28,7 @@ module "amui_vpc" {
 
 resource "aws_key_pair" "amui_instance_key" {
   key_name   = "instance_key-${var.customerShortName}-${var.vpcShortName}"
-  public_key = var.instance_key # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIYAbb46rk4Y6pYF1vudQTnzMfSaCWgPZdKaN+8DmF4N artur@devenv"
+  public_key = var.instance_key 
 }
 
 resource "aws_security_group" "bastion_ssh" {
